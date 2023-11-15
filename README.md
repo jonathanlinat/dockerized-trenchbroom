@@ -8,24 +8,20 @@ This repository contains the [TrenchBroom](https://github.com/TrenchBroom/Trench
 
 [Docker](https://www.docker.com) is used here to simplify building the application. With Docker, developers can compile and build the application without manually installing all dependencies.
 
-> **Important**
->
-> Currently, this setup is only compatible with Linux environments.
+> ⚠️ **Important Note**: Currently, this setup is only compatible with Linux environments.
 
 ## Structure of the Project
 
-The project utilizes a `TrenchBroom` directory, which is a Git clone of the TrenchBroom source. When the `build-<env>.sh` script is run, it generates a `build` directory (ignored by Git) where the compiled files are stored under the specified target sub-directory.
+The project utilizes a `TrenchBroom` directory, which is a Git clone of the TrenchBroom source. When the `build.sh` script is run, it compiles the content of the `TrenchBroom` directory.
 
 ```text
 .
-├── build/
-│   └── <target-name>/
-│       └── ...
 ├── TrenchBroom/
-│   └── ...
+│   ├── build/
+│   └── ... (other TrenchBroom directories and files)
 ├── .gitignore
-├── build-linux.sh
-├── Dockerfile
+├── build.sh
+├── Dockerfile.linux
 ├── LICENSE
 └── README.md
 ```
@@ -45,7 +41,7 @@ Ensure you have [Docker Engine](https://docs.docker.com/engine/) installed and o
 2. Navigate to the cloned directory:
 
    ```bash
-   cd <path/to/dockerized-trenchbroom-directory>/
+   cd dockerized-trenchbroom
    ```
 
 3. Clone the official TrenchBroom source code or a fork into this project:
@@ -56,19 +52,23 @@ Ensure you have [Docker Engine](https://docs.docker.com/engine/) installed and o
 
    > **Note**: To clone a specific branch, append `-b <branchname>` to the command.
 
-   You, now, must have a directory named `TrenchBroom`, as shown in the structure of the project.
+   After this step, you should have a directory named `TrenchBroom`, as shown in the project structure above.
 
 4. Compile the application:
 
-   Open your terminal and execute the following, replacing `<target-name>` with `TrenchBroom` or your desired target (like `GenerateManual`):
+   Open your terminal and execute the following, optionally replacing:
+   
+   - `<environment>` with `linux` or your desired environment (like `windows` or `macos`)
+   - `<target-name>` with `TrenchBroom` or your desired target (like `GenerateManual`)
 
    ```bash
-   ./build-linux.sh <target-name>
+   ./build.sh <environment> <target-name>
    ```
-   This will initiate the Docker-based build process. The resulting binary will be placed in `build/<target-name>/`.
+
+   This will initiate the Docker-based build process. The resulting binary will be placed in `TrenchBroom/build/`.
 
 With these steps, you can easily compile TrenchBroom using Docker, ensuring a consistent and streamlined build process.
 
 ## License
 
-**Dockerized TrenchBroom** is [MIT licensed](LICENSE).
+**Dockerized 🐋 TrenchBroom** is [MIT licensed](LICENSE).
