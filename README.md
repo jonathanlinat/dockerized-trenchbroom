@@ -8,7 +8,7 @@ This repository contains the [TrenchBroom](https://github.com/TrenchBroom/Trench
 
 [Docker](https://www.docker.com) is used here to simplify building the application. With Docker, developers can compile and build the application without manually installing all dependencies.
 
-> ⚠️ **Important Note**: Currently, this setup is only compatible with Linux environments.
+> ⚠️ **Disclaimer**: This setup is currently only compatible with Linux environments. Support for Windows and macOS is planned for the near future.
 
 ## Structure of the Project
 
@@ -17,8 +17,11 @@ The project utilizes a `TrenchBroom` directory, which is a Git clone of the Tren
 ```text
 .
 ├── TrenchBroom/
-│   ├── build/
-│   └── ... (other TrenchBroom directories and files)
+│   └── build/
+│       └── <environment>/
+│           └── <type>/
+│               └── <target>/
+│                   └── ...
 ├── .gitignore
 ├── build.sh
 ├── Dockerfile.linux
@@ -29,6 +32,8 @@ The project utilizes a `TrenchBroom` directory, which is a Git clone of the Tren
 ## Getting Started
 
 Ensure you have [Docker Engine](https://docs.docker.com/engine/) installed and operational. An alternative user-friendly interface for managing Docker elements is [Docker Desktop](https://docs.docker.com/desktop/).
+
+> ⚠️ **Technical Note**: For an optimized building experience, it may be necessary to adjust your Docker resource allocations, including CPU, Memory, and Disk Space. Increasing these limits in Docker settings can significantly enhance performance, especially for resource-intensive tasks, and avoid failing building processes.
 
 ### How to Use
 
