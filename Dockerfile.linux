@@ -1,8 +1,10 @@
 # Use a lighter base image
 FROM debian:bookworm-slim
 
-# Define build target for configuration
-ARG BUILD_TARGET=TrenchBroom
+# Define build variables for configuration
+ARG BUILD_ENV
+ARG BUILD_TYPE
+ARG BUILD_TARGET
 
 # Install dependencies in a single layer and clean up after
 RUN \
@@ -19,14 +21,14 @@ COPY TrenchBroom/ /TrenchBroom
 WORKDIR /TrenchBroom
 
 # Create a build directory and switch to it
-RUN mkdir -p build
-WORKDIR /TrenchBroom/build
+RUN mkdir -p build/${BUILD_ENV}/${BUILD_TYPE}/${BUILD_TARGET}
+WORKDIR /TrenchBroom/build/${BUILD_ENV}/${BUILD_TYPE}/${BUILD_TARGET}
 
 # Execute the building process
 RUN \
   if [ -f build.ninja ]; then \
     ninja; \
   else \
-    cmake .. -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_PREFIX_PATH="cmake/packages" || exit 1; \
-    cmake --build . --config Debug --target ${BUILD_TARGET} || exit 1; \
+    cmake ./../../../../ -GNinja -DCMAKE_PREFIX_PATH="cmake/packages" -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_CXX_FLAGS="-Werror" -DCMAKE_EXE_LINKER_FLAGS="-Wl,--fatal-warnings" -DTB_SUPPRESS_PCH=1 || exit 1; \
+    cmake --build . --config ${BUILD_TYPE} --target ${BUILD_TARGET} || exit 1; \
   fi

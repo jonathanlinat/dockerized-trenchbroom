@@ -57,15 +57,15 @@ Ensure you have [Docker Engine](https://docs.docker.com/engine/) installed and o
 4. Compile the application:
 
    Open your terminal and execute the following, optionally replacing:
-   
-   - `<environment>` with `linux` or your desired environment (like `windows` or `macos`)
-   - `<target-name>` with `TrenchBroom` or your desired target (like `GenerateManual`)
+
+   - `<type>` with `Debug` or your desired environment (like `Release`)
+   - `<target>` with `TrenchBroom` or your desired target (like `GenerateManual`)
 
    ```bash
-   ./build.sh <environment> <target-name>
+   ./build.sh <environment> <type> <target>
    ```
 
-   This will initiate the Docker-based build process. The resulting binary will be placed in `TrenchBroom/build/`.
+   This will initiate the Docker-based build process. The resulting binary will be placed in `TrenchBroom/build/<environment>/<type>/<target>/`.
 
 With these steps, you can easily compile TrenchBroom using Docker, ensuring a consistent and streamlined build process.
 
