@@ -63,7 +63,8 @@ Ensure you have [Docker Engine](https://docs.docker.com/engine/) installed and o
 
    Open your terminal and execute the following, optionally replacing:
 
-   - `<type>` with `Debug` or your desired environment (like `Release`)
+   - `<environment>` with `linux`
+   - `<type>` with `Debug` or your desired type (like `Release`, `RelWithDebInfo` or `MinSizeRel`)
    - `<target>` with `TrenchBroom` or your desired target (like `GenerateManual`)
 
    ```bash

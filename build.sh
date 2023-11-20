@@ -20,10 +20,10 @@ esac
 # Default build type
 BUILD_TYPE=${2:-Debug}
 case "$BUILD_TYPE" in
-  Debug|Release)
+  Debug|Release|RelWithDebInfo|MinSizeRel)
     ;;
   *)
-    echo "Error: Invalid build type '${BUILD_TYPE}'. Allowed values are Debug and Release."
+    echo "Error: Invalid build type '${BUILD_TYPE}'. Allowed values are Debug, Release, RelWithDebInfo and MinSizeRel."
     exit 1
     ;;
 esac
